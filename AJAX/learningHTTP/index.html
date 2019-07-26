@@ -23,7 +23,7 @@ function hGetHtmlPage(){
         if(e.currentTarget.readyState!==4 || e.currentTarget.status !=200) return;
 
         btn.removeEventListener('click',hGetHtmlPage);
-        div.outerHTML = e.currentTarget.responseText;
+        div.innerHTML = e.currentTarget.responseText;
 
         ///////////////////////////////////////////////////////////////
         function loadNewScript(callBack){
