@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HTML page transform</title>
+</head>
+<body>
+<div class="html">Test
+    <input type="button" value="Press to transform this html page">
+
+
+<script>
+    let btn = document.querySelector('input');
+    btn.addEventListener('click',hGetHtmlPage);
+function hGetHtmlPage(){
+    let div = document.querySelector('.html');
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET','../getPhones/index copy.html');
+    xhr.send();
+    xhr.addEventListener('readystatechange', (e)=>{
+        if(e.currentTarget.readyState!==4 || e.currentTarget.status !=200) return;
+
+        btn.removeEventListener('click',hGetHtmlPage);
+        div.outerHTML = e.currentTarget.responseText;
+
+        ///////////////////////////////////////////////////////////////
+        function loadNewScript(callBack){
+            let scr = document.createElement('script');
+            scr.src = '../getPhones/get.js';
+            document.body.appendChild(scr);
+            
+            scr.addEventListener('load',hRunScr);
+            function hRunScr(){
+                callBack();
+                scr.removeEventListener('load',hRunScr);
+            }
+        }
+        loadNewScript(()=>{go();});
+    });
+}
+</script>
+</div>
+</body>
+</html>
