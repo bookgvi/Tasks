@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Load phones</title>
+</head>
+<body>
+    <input type="button" value='get' class='btnGet'>
+    <script>
+        const btn = document.querySelector('.btnGet');
+        btn.addEventListener('click',hGetPhones);
+
+    function hGetPhones(){    
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET','phones.json');
+        xhr.send();
+
+        xhr.addEventListener('readystatechange',(e)=>{
+            let xhrState = e.currentTarget;
+
+            if(xhrState.readyState!=4) return;
+
+            if(xhrState.status != 200){ 
+                console.error('Catched...', xhrState.status, xhrState.statusText);
+                return;
+            }
+            console.log(xhrState.responseText);
+            btn.value = 'done'
+        });
+            btn.value = 'getting...'
+
+    }
+
+    
+    </script>
+</body>
+</html>
