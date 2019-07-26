@@ -23,6 +23,7 @@
     <div class="container">
         <div id='start'></div>
         <div class="text">
+                <a href='http://ya.ru'>YANDEX</a><br>
             <a href='#end'>END</a><br>
             <a href='#center'>CENTER</a>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum enim non assumenda, deserunt quae architecto laborum. Nihil repellendus, odio quam inventore eos veniam animi iste possimus? Sapiente esse, eveniet praesentium itaque officiis voluptatibus impedit porro repudiandae deserunt doloremque corporis nobis minus quia libero, tenetur blanditiis enim illo necessitatibus delectus. Minus, esse facere. Dolore, accusamus commodi amet, quia unde minus, distinctio recusandae aliquam sunt accusantium nesciunt. Aliquid praesentium dolores incidunt beatae tenetur doloremque eos repellendus, dignissimos dolor? Dolores itaque eveniet assumenda! Officia ipsam est placeat nulla officiis hic perferendis fuga possimus totam, voluptatem, amet asperiores et molestias! Aspernatur inventore et sapiente nostrum laborum excepturi fugiat officia praesentium fuga quis harum itaque reiciendis aut dicta delectus sit ipsam assumenda tempore sequi ratione autem, labore unde ducimus? Numquam assumenda eligendi repudiandae repellat sapiente saepe. Laudantium laboriosam voluptate tenetur harum ab repudiandae commodi officiis voluptatibus odit numquam! Adipisci, aut voluptas sed sequi eos, doloribus eius vero libero tenetur impedit repellat perferendis voluptates. Iste ipsa necessitatibus delectus itaque ipsum nostrum, laborum exercitationem laudantium voluptate minima. Reiciendis voluptatum modi adipisci magnam dolorum harum, nesciunt quam impedit nobis ab nihil nisi alias deleniti laboriosam placeat totam blanditiis expedita repellat assumenda accusantium ipsa! Laboriosam debitis, harum saepe ullam explicabo exercitationem eveniet temporibus qui obcaecati ipsum. Dolorum ipsam aut sequi quis beatae assumenda quia fugiat velit perferendis, blanditiis quisquam placeat possimus ea eos voluptatibus dolor nihil hic natus quos aperiam ducimus sit facere. Aspernatur at aliquam nam repellendus veniam fugit voluptate dolorum quasi reiciendis recusandae eos neque libero corporis laudantium iure sequi voluptas, accusantium deserunt minus saepe sunt fuga minima perferendis est. Adipisci soluta tenetur iure maiores quos nesciunt aliquam similique pariatur, itaque quis totam, molestias ea optio saepe doloremque! Optio asperiores numquam ratione necessitatibus ipsam recusandae aspernatur officiis sequi quisquam! Praesentium provident laudantium veritatis animi saepe dicta nisi aperiam quisquam, tempora beatae sit at facere ad aspernatur perferendis incidunt modi eveniet repellat maxime, quas perspiciatis! Ex, dicta delectus officia adipisci ipsum at veritatis porro itaque eaque sint architecto odit earum necessitatibus possimus qui magni, quos, dignissimos corrupti aliquid? Ipsam blanditiis, neque, cum eos expedita officia corrupti, inventore tempore id facere optio dolorum repellat dignissimos fuga minima. Voluptate, quis alias labore soluta inventore possimus vel molestias suscipit, dolor magni sequi accusantium consequatur cupiditate quisquam esse, totam voluptatem eaque earum quidem delectus dignissimos. Odit soluta architecto ipsum molestiae incidunt eligendi labore amet? Sunt consequuntur repellendus dicta velit facere harum placeat repudiandae! Perferendis sapiente modi, deleniti sed, aspernatur saepe sequi fugiat aut vel a, natus amet maiores excepturi? Vero delectus quasi praesentium commodi laudantium corrupti nobis, sed hic autem ut, impedit corporis aliquid. Rerum, enim tempore? Officia voluptas maiores dignissimos dolore molestias laudantium consequuntur, vero aliquam sed esse nemo, quibusdam eius dicta saepe quaerat iste odit incidunt distinctio pariatur aspernatur optio nostrum sint accusamus. Non corrupti sed vitae in voluptatem commodi, expedita vel quaerat doloribus mollitia veritatis ut sit officia soluta optio <div class="center" id='center'></div> <a href='#start'>START</a><br><a href='#end'>END</a>
@@ -36,13 +37,14 @@ let coordY;
 document.addEventListener('click', hClick);
 function hClick(e){
     coordY=null;
-    if(!e.target.href || e.target.href.slice(4)==='http') return;
-    e.preventDefault();
-    let link = [];
-    link = e.target.href.split('#');
-    let href = document.querySelector('#'+link[1]);
-    coordY = href.getBoundingClientRect().top + window.pageYOffset;
-    hSlow();
+    if(~e.target.href.indexOf('#')){
+        e.preventDefault();
+        let link = [];
+        link = e.target.href.split('#');
+        let href = document.querySelector('#'+link[1]);
+        coordY = href.getBoundingClientRect().top + window.pageYOffset;
+        hSlow();
+    }
 }
 
 function hSlow(){    
